@@ -101,13 +101,13 @@ function accion(){
 	
 	
     //var conversacion = Object();
-    if (usuarios.length > 2)
+    if (usuarios.length > 2) //~ TODO: POR AHORA SOLO FUNCIONA CON 2 USUARIOS, PERO DE CUALQUIER MANERA QUIZÁ PREGUNTAR RELACIONES TAMBIÉN PARA LA PERSONA MISMA SEA REDUNDANTE, ES MEJOR QUE SOLO SE AGREGUEN DATOS PARA UNA PERSONA Y SE TENGAN SUS CONTRAPARTES.
         changeRelacion();
     for (i = 0; i < usuarios.length; i++)
         conversacion[i] = "";
     var userID = -1;
     var flag = false;
-    for (i = 0; i < lineas.length; i++) {
+    for (i = 0; i < lineas.length; i++) {	//~ TODO: QUE RAYOS ES ESTO?? PARECE SER QUE INTENTA SEPARAR LAS CONVERSACIONES DE LOS DIFERENTES USUARIOS PERO  Y A CADA USUARIO LO SEPARA CON UNA CADENA ESPECIAL. ESTO SEGURAMENTE CAUSARÁ PROBLEMAS Y SE PUEDE MEJORAR.
         flag = bandera(lineas, i, usuarios);
         if (flag) {
             conversacion[userID] = conversacion[userID] + lineas[i] + " ";
@@ -190,7 +190,7 @@ function validaCP(num, flag) {
     xhttp.open("GET", "codigo.php?codigo="+document.getElementById("userres" + num).value + "&user=" + num, true);
     xhttp.send();
 }
-function revisa (lineas, pos) {
+function revisa (lineas, pos) { //~ TODO: ESTA FUNCION NO ESTÁ ACTUALIZADA CON LA EXPRESIÓN REGULAR CORRECTA, PERO NI SIQUIERA SE SI SU USO ESTÁ FUNDAMENTADO.
     if (/..\d.\d{2}.(AM|PM)..\d.\d{2}.\d{4}..(.*):.*/.test(lineas[pos]))
          return false;
     else
@@ -344,7 +344,7 @@ function separarLineas(texto){
     }
     return lineas;
 }
-function identificarUsuarios(lineas) {
+function identificarUsuarios(lineas) { //~ TODO: AQUÍ FALTA UNA REVISIÓN SI LA LÍNEA ESTÁ VACÍA. ACTUALMENTE LA TOMA COMO UN USUARIO MÁS.
     usuarios = [];
 	var cjto = new Set();
     for (i = 0; i < lineas.length; i++){
